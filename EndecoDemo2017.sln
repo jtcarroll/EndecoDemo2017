@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndecoDemo2017", "EndecoDemo2017\EndecoDemo2017.csproj", "{08056992-B4F5-4B71-B441-DAFA4062E9E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndecoDemo2017.Tests", "EndecoDemo2017.Tests\EndecoDemo2017.Tests.csproj", "{B1F023B2-10E5-4AAB-9560-BE83FA759691}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08056992-B4F5-4B71-B441-DAFA4062E9E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08056992-B4F5-4B71-B441-DAFA4062E9E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08056992-B4F5-4B71-B441-DAFA4062E9E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08056992-B4F5-4B71-B441-DAFA4062E9E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1F023B2-10E5-4AAB-9560-BE83FA759691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1F023B2-10E5-4AAB-9560-BE83FA759691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1F023B2-10E5-4AAB-9560-BE83FA759691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1F023B2-10E5-4AAB-9560-BE83FA759691}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77D23DB5-0523-4190-AE2E-E980030CE870}
+	EndGlobalSection
+EndGlobal
