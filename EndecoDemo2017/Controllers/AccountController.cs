@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EndecoDemo2017.Models;
+using EndecoDemo.DAL;
+using EndecoDemo.DAL.DBContext;
 
 namespace EndecoDemo2017.Controllers
 {
@@ -68,6 +70,8 @@ namespace EndecoDemo2017.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
+          
             if (!ModelState.IsValid)
             {
                 return View(model);

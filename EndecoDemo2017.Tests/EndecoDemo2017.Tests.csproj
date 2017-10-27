@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EndecoDemo2017\EndecoDemo2017.csproj">
+    <ProjectReference Include="..\EndecoDemo2017\EndecoDemo.Web.csproj">
       <Project>{08056992-B4F5-4B71-B441-DAFA4062E9E1}</Project>
-      <Name>EndecoDemo2017</Name>
+      <Name>EndecoDemo.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
