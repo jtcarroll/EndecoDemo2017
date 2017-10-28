@@ -11,6 +11,12 @@ using Microsoft.Owin.Security;
 using EndecoDemo2017.Models;
 using EndecoDemo.DAL;
 using EndecoDemo.DAL.DBContext;
+using EndecoDemo.Services.Services;
+using EndecoDemo2017.ViewModels.Member;
+using AutoMapper;
+using Autofac;
+using EndecoDemo.DAL.Infrastructure.Interfaces;
+using System.Configuration;
 
 namespace EndecoDemo2017.Controllers
 {
@@ -20,14 +26,21 @@ namespace EndecoDemo2017.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly IMemberService _memberService;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AccountController(IMemberService memberService, IUnitOfWork unitOfWork)
         {
+            this._memberService = memberService;
+            this._unitOfWork = unitOfWork;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IMemberService memberService, IUnitOfWork unitOfWork)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this._memberService = memberService;
+            this._unitOfWork = unitOfWork;
         }
 
         public ApplicationSignInManager SignInManager
@@ -70,8 +83,6 @@ namespace EndecoDemo2017.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-
-          
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -159,6 +170,18 @@ namespace EndecoDemo2017.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //save new member to endecodata database
+                    try
+                    {
+                        var mem = Mapper.Map<Member>(new MemberViewModel() { Email = model.Email });
+                        _memberService.CreateMember(mem);
+                        _memberService.SaveMember();
+                    }
+                    catch (Exception ex)
+                    {
+                        //log error
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

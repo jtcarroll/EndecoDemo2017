@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace EndecoDemo.DAL.DBContext
 {
     public class ApplicationEntities : DbContext
     {
-        public ApplicationEntities() : base("ApplicationEntities") { }
+
+        public ApplicationEntities() : base(ConfigurationManager.ConnectionStrings["EndecoDemoStockDataConnection"].ConnectionString) { } //"ApplicationEntities"
 
         public DbSet<Member> Members { get; set; }
         public DbSet<StockHeader> StockHeaders { get; set; }
@@ -19,12 +21,6 @@ namespace EndecoDemo.DAL.DBContext
         {
             base.SaveChanges();
         }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Configurations.Add(new GadgetConfiguration());
-        //    modelBuilder.Configurations.Add(new CategoryConfiguration());
-        //}
     }
 }
 

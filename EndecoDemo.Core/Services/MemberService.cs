@@ -21,10 +21,9 @@ namespace EndecoDemo.Services.Services
         private readonly IStockHeaderRepository headerRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public MemberService(IMemberRepository membersRepository, IStockHeaderRepository headerRepository, IUnitOfWork unitOfWork)
+        public MemberService(IMemberRepository membersRepository, IUnitOfWork unitOfWork)
         {
             this.membersRepository = membersRepository;
-            this.headerRepository = headerRepository;
             this.unitOfWork = unitOfWork;
         }
 

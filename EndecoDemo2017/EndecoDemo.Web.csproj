@@ -46,6 +46,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.0.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -195,11 +204,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Autofac\Bootstrapper.cs" />
+    <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Infrastructure\Automapper\Profiles\ModelsToViewModelsProfile.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Member.cs" />
+    <Compile Include="ViewModels\Member\MemberViewModel.cs" />
+    <Compile Include="ViewModels\StockDetail.cs" />
+    <Compile Include="ViewModels\StockHeader.cs" />
+    <Compile Include="ViewModels\Stock\StockDetailViewModel.cs" />
+    <Compile Include="ViewModels\Stock\StockHeaderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\EndecoDemoStockData.mdf" />
@@ -266,6 +284,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EndecoDemo.Common\EndecoDemo.Models.csproj">
+      <Project>{f568dcd5-00f3-4bc1-9901-bd11b017b35b}</Project>
+      <Name>EndecoDemo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndecoDemo.Core\EndecoDemo.Services.csproj">
+      <Project>{4730cc2c-4f35-40f7-8dae-ab912915d4aa}</Project>
+      <Name>EndecoDemo.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\test\EndecoDemo.DAL.csproj">
       <Project>{79ca7378-54a5-42b3-8438-e2acbabe668b}</Project>
       <Name>EndecoDemo.DAL</Name>
