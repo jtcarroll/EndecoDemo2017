@@ -1,24 +1,1689 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿/*  member  */
+@import url(//fonts.googleapis.com/css?family=Raleway:300,400,500,700|Lato:300,400,600,700,300italic,400italic);
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+/*  General  */
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
 
-/* Set width on the form input elements since they're 100% wide by default */
+body {
+    line-height: 1.4;
+    height: 100%;
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+/* Titles */
+
+html,
+button,
 input,
 select,
 textarea {
-    max-width: 280px;
+    color: #222;
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+}
+
+body:hover, body:active, body:focus {
+    outline: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway";
+    font-weight: 400;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 48px;
+    line-height: 60px;
+    margin-bottom: 10px;
+    padding: 2px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 42px;
+}
+
+h3 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+h4 {
+    font-size: 36px;
+    line-height: 36px;
+    margin: 10px 0;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+    line-height: 1.4;
+}
+
+input.form-control {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+    padding: 0 12px;
+}
+
+select.form-control {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+    padding: 0 12px;
+}
+
+.adminFormPreEdit {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+}
+
+label.control-label {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+    margin: 10px 0 5px;
+}
+
+.formLabel {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: none;
+    text-decoration: none;
+    word-spacing: 0;
+    margin: 10px 0 5px;
+}
+
+li {
+    font-family: 'Lato', sans-serif;
+}
+
+.brandColor {
+    color: #165787;
+}
+
+.boldText {
+    font-weight: 400;
+}
+
+strong {
+    font-weight: 500;
+}
+/**** FORM VALIDATION */
+.has-warning {
+    color: #8a6d3b;
+}
+
+.has-error {
+    border-color: #a94442;
+}
+
+small.error {
+    color: #a94442 !important;
+}
+
+.ng-valid {
+    border-color: green;
+}
+/**** */
+i.fa.fa-cloud-upload.centerGlyphSm.noMarginPadding.center-block {
+    color: #165787;
+}
+
+.profileHeading {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+tr {
+    font-family: "Raleway";
+    font-size: 16px;
+}
+
+td {
+    font-family: "Lato";
+    font-size: 16px;
+}
+
+nav {
+    font-family: "Lato";
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.navbar-brand {
+    font-family: "Lato";
+    font-weight: 700;
+    font-size: 14px;
+    float: none;
+    padding-left: 20px;
+}
+
+.well {
+    background-color: #FFF;
+}
+
+.panel-title {
+    color: #000;
+}
+
+.formWell {
+    background-color: #FEFEFE;
+    padding: 0 30px;
+    margin-top: 12px;
+}
+
+hr {
+    background-color: #CCC;
+    border-color: #CCC;
+    color: #CCC;
+}
+
+.smallHR {
+    width: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fadedText li {
+    opacity: 0.8;
+}
+
+.error {
+    color: orange;
+    font-size: 14px;
+}
+
+.page-header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+a.fa:hover {
+    opacity: 0.8;
+}
+
+a {
+    color: #165787;
+    font-family: 'Lato';
+}
+
+.largerLink {
+    font-size: 18px;
+}
+
+a:hover {
+    color: #FF8E08;
+    text-decoration: none;
+}
+
+a.smoothScroll {
+    color: #444;
+    font-size: 16px;
+    background-color: #FFF;
+}
+
+.offset {
+    display: block;
+    margin-top: -100px;
+    padding-top: 80px;
+}
+
+.progSynopsis h5 {
+    line-height: 22px;
+}
+
+a:active {
+    color: orange;
+}
+
+a.smoothScroll:active {
+    background-color: #FFF;
+    color: #444;
+}
+
+.smoothScroll:focus {
+    background-color: #FFF;
+    color: #444;
+}
+
+.section {
+    padding-top: 40px;
+}
+
+ol.breadcrumb {
+    background-color: #FFF;
+    margin: 0;
+}
+
+.pointsBar {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+.verticalMiddle {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -4px;
+}
+
+.wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+    .wrapper img {
+        display: block;
+        max-width: 100%;
+        background-color: #FFF;
+        color: #222;
+    }
+
+    .wrapper .overlay {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+
+.howItWorksImg {
+    max-height: 200px;
+}
+
+.drawDate {
+    font-size: 18px;
+}
+
+/*  Footer  */
+
+
+
+i.footerIcon {
+    color: #FFF;
+    margin: 0 10px;
+}
+
+footer a {
+    color: #FFF;
+}
+
+    footer a:hover {
+        color: #FF8E08;
+        text-decoration: none;
+    }
+
+.footerText {
+    color: #FFF;
+    padding: 12px;
+}
+
+.footerConnect {
+    color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+html.js.flexbox {
+}
+
+body footer {
+    background-color: #165787;
+    border-color: #444;
+    border-style: solid;
+    border-width: 2px 0 0 0;
+    margin-top: 200px;
+    padding: 50px 0 0 0;
+}
+
+.centerGlyph {
+    display: block;
+    text-align: center;
+    font-size: 96px;
+    margin: 6px;
+    padding: 10px;
+}
+
+.centerGlyphSm {
+    display: block;
+    text-align: center;
+    font-size: 86px;
+}
+
+.noMarginPadding {
+    margin: 0;
+    padding: 0;
+}
+
+
+.topPadding {
+    margin-top: 10px;
+}
+/*  Buttons */
+
+.btn {
+    background-color: #fff;
+    border-color: #666;
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.75);
+    color: #444;
+    font-family: "Lato";
+    max-width: 260px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    outline: 0;
+    white-space: normal !important;
+}
+
+    .btn:active {
+        background-color: #fff;
+        box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.5);
+        color: #888;
+        border-color: #FFF;
+        outline: none;
+    }
+
+    .btn:hover {
+        background-color: #fff;
+        border-color: #666;
+        border-radius: 4px;
+        border-width: 1px;
+        box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.5);
+        color: #444;
+    }
+
+.btn-primary {
+    max-width: 260px;
+    background-color: #FFF;
+    font-family: "Lato" !important;
+}
+
+    .btn-primary:active:focus {
+        color: #444;
+        background-color: #FFF;
+    }
+
+    .btn-primary.focus {
+        color: #444;
+    }
+
+.btnToolbar {
+    margin-bottom: 5px;
+}
+
+.btn-block {
+    background-color: #fff;
+    border-color: #666;
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.75);
+    color: #444;
+    font-family: "Lato";
+    max-width: 260px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    outline: 0;
+}
+
+    .btn-block:active {
+        background-color: #fff;
+        box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.5);
+        color: #888;
+        border-color: #FFF;
+        outline: 0;
+    }
+
+.btn-primary:active {
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.5);
+    color: #888;
+    border-color: #FFF;
+    outline: 0;
+}
+
+.btn-warning {
+    background-color: orange;
+    color: #FFF;
+    border-style: none;
+}
+
+.btn-success {
+    background-color: green;
+    color: #FFF;
+    border-style: none;
+}
+
+.btn-danger {
+    background-color: red;
+    color: #FFF;
+    border-style: none;
+}
+
+input.btn.btn-primary.center-block {
+    min-width: 200px;
+}
+
+.dropdownBtn {
+    background-color: #fff;
+    color: #444;
+    border: none;
+    font-family: "Lato";
+    min-width: 200px;
+    max-width: 260px;
+    text-transform: uppercase;
+}
+
+.userDropDown {
+    margin-left: 12px;
+}
+
+a.dropdown-toggle {
+    color: #444;
+    text-align: center;
+}
+
+    a.dropdown-toggle:hover {
+        color: #444;
+        border-bottom: 1px solid #CCC;
+    }
+
+    a.dropdown-toggle:active {
+        color: #444;
+        background-color: #FFF;
+        border: none;
+    }
+
+    a.dropdown-toggle:focus {
+        color: #444;
+        border-bottom: 1px solid #CCC;
+        border: none;
+    }
+
+.wishlistCartText {
+    font-size: 18px;
+}
+
+/* Rewards  */
+.cartWishlistImage {
+    max-width: 150px;
+    max-height: 100px;
+}
+
+a.btn.dropdownBtn {
+    border-radius: 1px;
+    box-shadow: none;
+}
+
+    a.btn.dropdownBtn:hover {
+        background-color: #EEEEEE;
+    }
+
+td.centeredText {
+    text-align: center;
+}
+
+.rewardContainer {
+    background-color: #F9F9F9;
+    border: 4px solid #FFF;
+    margin: 20px 0 20px 0;
+    padding: 10px;
+}
+
+a.rewardBtn {
+    border: 1px solid #666;
+    max-width: 80%;
+}
+
+    a.rewardBtn:hover {
+        border: 1px solid #666;
+    }
+
+i.rewardBtnIcon {
+    color: #444;
+}
+
+.loginBtn {
+    margin: 8px auto auto auto;
+}
+
+.rewardImageContainer {
+    height: 160px;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.rewardImage {
+    max-height: 160px;
+    max-width: 240px;
+}
+
+p.productNameStyle {
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    height: 80px;
+    border: 1px solid #CCC;
+    padding: 4px;
+}
+
+h4.productNameStyle {
+    font-size: 18px;
+    line-height: 24px;
+    height: 40px;
+}
+
+.rewardRetailerTitle {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.RewardDetails {
+    border-style: none;
+}
+
+.addBtn {
+    max-width: 40px;
+    color: #80FF00;
+    border-color: #EEE;
+}
+
+    .addBtn:hover {
+        color: #80FF00;
+        border-color: #EEE;
+    }
+
+.removeBtn {
+    max-width: 40px;
+    border-color: #EEE;
+    color: #CC0000;
+}
+
+    .removeBtn:hover {
+        border-color: #EEE;
+        color: #CC0000;
+    }
+
+
+/* small ads 300x200px */
+
+div.col-md-4.col-md-push-8.col-sm-4.col-sm-push-8.col-xs-12 img {
+    margin: 20px;
+}
+
+.divBottomBorder {
+    top: 1px;
+    margin: 1px;
+    padding: 1px 2px 2px 3px;
+    border-width: 2px;
+    border-bottom: 1px black solid;
+    width: 100%;
+}
+
+.pointsTotal {
+    text-align: right;
+    background-color: #eee;
+    margin: 0;
+    padding: 4px;
+    color: #428BCA;
+    font-weight: 400;
+}
+
+/* Carousel */
+
+/*.carouselOverlay {
+    top: 200px; 
+    bottom: auto;
+     z-index:3;
+}*/
+.carouselCol {
+    height: 280px;
+    margin-bottom: 20px;
+}
+
+.carousel-inner {
+    max-width: 500px;
+    margin-top: 5px;
+    z-index: -1;
+    margin-bottom: 20px;
+}
+
+h2.carouselHeading {
+    color: #fff;
+    font-size: 42px;
+    font-weight: normal;
+    margin-left: 0;
+    text-shadow: none;
+    top: 0;
+    bottom: auto;
+}
+
+.carousel-caption {
+    top: 0;
+    bottom: auto;
+}
+
+.carouselControl {
+    margin: 20px;
+}
+
+.internalHomeCarousel {
+    max-height: 200px;
+}
+
+.mainHeading {
+    font-size: 48px;
+    color: #FF8E08;
+    font-weight: 400;
+    text-align: center;
+    line-height: 56px;
+    margin-top: -20px;
+}
+
+.noTopMargin {
+    margin-top: 0;
+}
+
+.pageTitle {
+    margin-top: 20px;
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.mainAdminHeading {
+    font-size: 48px;
+    color: #FF8E08;
+    font-weight: 400;
+    text-align: center;
+    margin: 80px 0 20px 0;
+}
+
+.mainSubHeading {
+    font-size: 24px;
+    margin: 0 0 24px 0;
+}
+
+.smallSubHeading {
+    padding: 16px;
+}
+
+.overviewHeading {
+    font-size: 48px;
+    color: #FF8E08;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
+    line-height: 42px;
+}
+
+.aboutImage {
+    width: 100%;
+    max-width: 600px;
+}
+
+.bigList {
+    font-size: 24px;
+    list-style: none;
+}
+
+.bigListItem {
+    padding: 5px 0;
+    border-bottom: 1px solid #CCC;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listIcon {
+    padding-left: 1em;
+}
+
+.plusIcon:before {
+    list-style: none;
+    font-family: 'FontAwesome';
+    font-size: 36px;
+    content: '\f067';
+    margin: 0 12px 0 -15px;
+    color: #165787;
+    line-height: 42px;
+}
+
+.giftIcon:before {
+    list-style: none;
+    font-family: 'FontAwesome';
+    font-size: 36px;
+    content: '\f06b';
+    margin: 0 12px 0 -15px;
+    color: #165787;
+    line-height: 42px;
+}
+
+.shopIcon:before {
+    list-style: none;
+    font-family: 'FontAwesome';
+    font-size: 36px;
+    content: '\f07a';
+    margin: 0 12px 0 -15px;
+    color: #165787;
+    line-height: 42px;
+}
+
+.printIcon:before {
+    list-style: none;
+    font-family: 'FontAwesome';
+    font-size: 36px;
+    content: '\f02f';
+    margin: 0 12px 0 -15px;
+    color: #165787;
+    line-height: 42px;
+}
+
+h2.forgotPasswordHeading {
+    margin-top: 20px;
+}
+
+.forgotPasswordHeading {
+    font-size: 36px;
+    color: #FF8E08;
+    font-weight: bold;
+    text-align: left;
+    line-height: 32px;
+}
+
+.passwordBox {
+    margin: 0;
+}
+
+#btnForgotPassword {
+    min-width: 160px;
+}
+
+.textdropshadow {
+    padding: 0 0 10px 0;
+    box-shadow: 2px 2px 2px 0 rgba(68,68,68,0.2);
+}
+
+.textBorder {
+    border-left: 1px dotted #CCC;
+}
+
+/*  News    */
+
+.newsHeadline {
+    font-size: 36px;
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.newsrow {
+    min-height: 60px;
+    padding: 20px;
+    border-bottom: 2px dotted #CCC;
+}
+
+.eventContainer {
+    padding: 4px;
+}
+
+.eventBox {
+    border: 1px groove #CCC;
+    border-radius: 2px;
+    padding: 4px;
+    background-color: #FFF;
+}
+
+.innerEventBox {
+    margin: 12px;
+    padding: 12px 12px;
+}
+
+.eventDescription {
+}
+
+
+.article_outline {
+}
+
+.dotborder {
+    border: 1px dotted #CCC;
+    padding: 10px;
+}
+
+    .dotborder .btn {
+        margin-bottom: 20px;
+    }
+
+.img-thumbnail {
+    border-color: #888;
+    border-width: 1px;
+    border-radius: 2px;
+    background-color: #CCC;
+}
+
+.pointsText {
+    color: #165787;
+    font-size: 36px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+}
+
+.rewardsContainer {
+    margin-top: 20px;
+}
+
+.rewardInnerContainer {
+    margin: 0 4px;
+}
+
+.reward {
+    padding: 20px;
+    border: 2px solid #CCC;
+    background-color: #FFF;
+    margin-bottom: 10px;
+}
+
+.rewardBox {
+}
+
+a.dropdown-toggle.mobileNavDropdown {
+    padding: 15px 2px 15px 2px;
+    font-weight: bold;
+}
+
+    a.dropdown-toggle.mobileNavDropdown:focus {
+        background-color: #FFF !important;
+    }
+
+li.visible-sm.visible-md.visible-lg a {
+    padding-right: 0;
+}
+
+ul.nav.navbar-nav.pull-right li a:hover {
+    background-color: #FFF;
+    color: #165787;
+    opacity: 0.8;
+}
+
+ul.nav.navbar-nav.pull-right li a:active {
+    background-color: #FFF;
+    color: #165787;
+    opacity: 0.5;
+}
+
+ul.nav.navbar-nav.pull-right li a:focus {
+    background-color: #FFF;
+    color: #165787;
+    opacity: 0.8;
+}
+
+.rewardTitle {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.smallAdvert {
+    margin: 10px 0;
+    border: 2px solid #CCCCCC;
+}
+
+a.forgotPass {
+    margin: -30px 0 40px 0;
+}
+
+.signInText {
+    padding: 0 0 4px 0;
+    margin: 0 0 6px 0;
+}
+
+.btn-facebook {
+    margin: 0 auto;
+}
+
+    .btn-facebook:active:hover {
+        color: #444;
+        background-color: #FFF;
+    }
+
+.hrSignIn {
+    margin-bottom: 4px;
+    width: 50%;
+}
+
+.signUp {
+    font-size: 24px;
+    text-align: center;
+    margin: -20px 0;
+}
+
+.signUpGroup {
+    margin: 8px 0;
+}
+
+.loginGroup {
+    padding-bottom: 5px;
+}
+
+#Facebook {
+    width: 200px;
+}
+
+#Twitter {
+    width: 200px;
+}
+
+.homePageInfo {
+    padding-top: 10px;
+}
+
+.registerBtn {
+    margin: 10px auto;
+}
+
+.paraMargin {
+    margin-top: 20px;
+}
+
+.emphasisedText {
+    color: #222;
+    font-weight: bold;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #BBB;
+}
+
+/* receipt */
+
+.shareText {
+    color: #CC0000;
+    margin-top: 20px;
+}
+
+.imageFilename {
+    max-width: 90%;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.receiptImage {
+    max-width: 300px;
+}
+
+.subheadingColor {
+    color: #FF8E08;
+}
+
+.shareGroup {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    background-color: #DDD;
+    border: 1px double #CCC;
+}
+
+i.twitterColouredIcon {
+    color: #55acee;
+}
+
+i.facebookColouredIcon {
+    color: #3b5998;
+}
+
+.advert {
+    margin: 10px auto 20px auto;
+}
+
+.requiredFieldText {
+    margin: -16px 0 0 -10px;
+}
+
+h4.text-center.sweepstakesTitle {
+    font-size: 24px;
+    line-height: 18px;
+    font-weight: 500;
+}
+/***************************************************** retailer site */
+
+.retailRegisterForm {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.retailerHeading {
+    font-size: 42px;
+    text-align: left;
+    font-weight: bold;
+    padding: 0;
+    line-height: 42px;
+    margin: 64px 12px;
+}
+
+.retailerSubHeading {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.AddressMapRow {
+    margin-bottom: 20px;
+}
+
+.retailerActivated {
+    background-color: #FFF;
+    border: 1px solid #75E46B;
+    padding: 10px;
+}
+
+.retailerDeActivated {
+    background-color: #FFF;
+    border: 1px solid #E46B6B;
+    padding: 10px;
+}
+
+.retailerActivatedText {
+    color: #11BA02;
+    font-size: 24px;
+}
+
+.retailerDeActivatedText {
+    color: #BA0202;
+    font-size: 24px;
+}
+
+.activateOrReject {
+    font-size: 24px;
+}
+
+.tableDarkText {
+    color: #000;
+}
+
+.retailerDescription {
+    text-align: left;
+    margin: 10px 0 20px 0;
+}
+
+.formGroupContainer {
+    border: 1px solid #EEE;
+    padding: 4px;
+}
+
+.voucherMainHeading {
+    font-size: 42px;
+    color: #FF8E08;
+    font-weight: bold;
+    text-align: center;
+    line-height: 42px;
+}
+
+.generalContainer {
+    background-color: #F9F9F9;
+    border: 4px thin #F0F0F8;
+    margin: 0 0 20px 0;
+    padding: 10px 10px 30px 10px;
+}
+
+.voucherTitle {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+}
+
+i.retailerLargeIcon {
+    color: #000;
+    font-size: 86px;
+}
+
+.retailerLargeIcon:hover {
+    color: #111;
+}
+
+.smallLinkBox {
+    border: 2px solid #FFF;
+    min-height: 260px;
+    background-color: #F6F6F6;
+    padding: 6px;
+}
+
+    .smallLinkBox p {
+        padding: 0 12px;
+    }
+
+.logoContainer {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+.retailerLogo {
+    background-color: #FFF;
+}
+
+.mapContainer {
+    margin-top: 10px;
+}
+
+.voucherPoints {
+    color: #165787;
+    font-size: 36px;
+}
+
+.voucherSubHeading {
+    font-size: 24px;
+}
+
+button.btn.btn-success.btn-md.pull-right {
+    border-width: 1px;
+}
+
+.retailerType {
+    font-weight: bold;
+    color: #165787;
+}
+
+.retailerPageAddDetails p {
+    font-family: "Raleway";
+    font-size: 18px;
+    -ms-word-break: break-all;
+    word-break: break-all;
+}
+
+.retailerpageContactdetails p {
+    font-size: 18px;
+    font-family: "Raleway";
+    line-height: 22px;
+    -ms-word-break: break-all;
+    word-break: break-all;
+}
+
+.voucherImage {
+    margin-bottom: 20px;
+}
+
+.voucherContainer {
+    background-color: #F9F9F9;
+    border: 2px solid #DDD;
+    margin: 0 0 20px 0;
+    padding: 10px;
+}
+
+.retailerCustom {
+    border: 1px solid #165787;
+    margin: 0 10px 0 10px;
+    padding: 0 10px 0 10px;
+}
+
+.storeLocation {
+    margin-bottom: 20px;
+}
+
+.retailerName {
+    margin-left: 10px;
+}
+
+.retailerAddress {
+}
+
+.datePicker {
+    background-color: #FFF;
+}
+
+/* Admin site */
+.adminTopMargin {
+    margin-top: 40px;
+}
+
+/*div.checkbox label {
+    padding-left: 4px;
+    min-width: 120px;
+}*/
+
+.adminHeading {
+    padding-top: 20px;
+}
+
+.retailerFormSubHeading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.smallerRetailerHeading {
+    line-height: 20px;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.editBtn {
+    margin-bottom: 20px;
+}
+/* Navigation */
+
+div.btnToolbar.col-md-12 {
+    margin-bottom: 20px;
+}
+
+.brandImage {
+    max-height: 40px;
+    float: left;
+    margin: 10px 0 4px 12px;
+}
+
+.logos {
+    border-top: 1px solid blue;
+}
+
+.navbar-default {
+    background-color: #ffffff;
+    border-color: #EEE;
+    border-color: transparent;
+}
+
+    .navbar-default .navbar-brand {
+        color: #444444;
+    }
+
+        .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+            color: #222222;
+        }
+
+    .navbar-default .navbar-text {
+        color: #444444;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        color: #222;
+    }
+
+        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+            color: #000;
+            border-bottom: 1px solid #CCC;
+            outline: none;
+            /* background-color: #FF8E08;  Highlight smoothscroll*/
+        }
+
+    .navbar-default .navbar-nav > li > .dropdown-menu {
+        background-color: #ffffff;
+    }
+
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+            color: #444444;
+        }
+
+            .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover, .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+                color: #222222;
+                text-decoration: underline;
+                -moz-text-decoration-color: #CCC;
+                text-decoration-color: #CCC;
+                background-color: #FFF;
+            }
+
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+            background-color: #ffffff;
+        }
+
+    .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+        color: #222222;
+        background-color: #FFF;
+    }
+
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+        color: #222222;
+        background-color: #FF8E08;
+    }
+
+    .navbar-default .navbar-toggle {
+        border-color: #FF8E08;
+    }
+
+        .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+            background-color: #FF8E08;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #444444;
+        }
+
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        border-color: #444444;
+    }
+
+    .navbar-default .navbar-link {
+        color: #444444;
+    }
+
+        .navbar-default .navbar-link:hover {
+            color: #222222;
+        }
+
+/* end navigation*/
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #444444;
+    }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            color: #222222;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #222222;
+        background-color: #FF8E08;
+    }
+
+    .eventHeading {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 0;
+    }
+
+
+    .sweepstakesWinner {
+        width: 90%;
+        min-width: 300px;
+        height: 90%;
+        padding: 20px 20px;
+    }
+
+    .drawDate {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    ul.nav.navbar-nav li a {
+        padding: 8px;
+    }
+}
+
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* The actual popup */
+    .popup .popuptext {
+        visibility: hidden;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+    }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+/************************************************ Media Queries */
+
+@media only screen and (min-width: 1600px) {
+    .loginGroup {
+        margin: 0;
+    }
+}
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1200px) {
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 992px) {
+    .signUp {
+        margin-bottom: 4px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .smallAdvert {
+        visibility: hidden;
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 768px) {
+    .homePageInfo {
+        padding-top: 0;
+    }
+
+    .overviewHeading {
+        margin-top: 20px;
+    }
+
+    .section {
+        margin-top: 70%;
+    }
+
+    .bigAdvert {
+        visibility: hidden;
+        display: none;
+    }
+
+    a.dropdown-toggle.mobileNavDropdown {
+        text-align: center;
+        color: #444 !important;
+        border-bottom: 1px solid #CCC;
+    }
+
+    li.mobileNavDropdown a {
+        text-align: center;
+    }
+
+    p {
+        margin: 4px;
+    }
+
+    .retailerLogo {
+        width: 100%;
+    }
+
+    .retailerMap {
+        width: 80%;
+    }
+
+    .loginForm {
+        margin: 0 10%;
+    }
+
+    .brandImage {
+        float: left;
+    }
+
+    .carouselCol {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 480px) {
+
+    h1 {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 24px;
+        line-height: 26px;
+    }
+
+    h5, h6 {
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .largerLink {
+        font-size: 12px;
+    }
+
+    .pointsText {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    .mainHeading {
+        font-size: 32px;
+        line-height: 32px;
+        margin-top: 20px;
+    }
+
+    .mainSubHeading {
+        font-size: 18px;
+    }
+
+    .text-center {
+        line-height: 32px;
+    }
+
+    li {
+        font-size: 16px;
+    }
+
+    .brandImage {
+        max-width: 60px;
+    }
+
+    .retailerHeading {
+        font-size: 42px;
+        text-align: left;
+        font-weight: bold;
+        padding: 0;
+        line-height: 42px;
+        margin: 10px 12px;
+    }
+}
+
+/* Custom, iPhone Retina */
+
+@media only screen and (max-width: 320px) {
+}
+
+@media only screen and (min-width: 728px) and (max-width: 1166px) {
+    h1.pageTitle {
+    }
+
+    .bigAdvert {
+    }
+
+    .mainAdminHeading {
+        margin-top: 110px;
+    }
+
+    ul.nav.navbar-nav li a {
+        padding: 4px 6px;
+    }
+}
+
+@media only screen and (min-width: 1166px) {
 }

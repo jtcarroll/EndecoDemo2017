@@ -1,6 +1,8 @@
-﻿using EndecoDemo.DAL;
+﻿using AutoMapper;
+using EndecoDemo.DAL;
 using EndecoDemo.DAL.Infrastructure.Interfaces;
 using EndecoDemo.DAL.Repositories;
+using EndecoDemo.Models.Member;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,16 +11,16 @@ namespace EndecoDemo.Services.Services
 {
     public interface IMemberService
     {
-        IEnumerable<Member> GetMembers();
-        Member GetMember(int id);
-        void CreateMember(Member Member);
-        void SaveMember();
+        IEnumerable<MemberModel> GetMembers();
+        MemberModel GetMember(int id);
+        MemberModel GetMemberByEmail(string email);
+        int CreateMember(MemberModel Member);
+        void CommitMember();
     }
 
     public class MemberService : IMemberService
     {
         private readonly IMemberRepository membersRepository;
-        private readonly IStockHeaderRepository headerRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public MemberService(IMemberRepository membersRepository, IUnitOfWork unitOfWork)
@@ -27,26 +29,34 @@ namespace EndecoDemo.Services.Services
             this.unitOfWork = unitOfWork;
         }
 
-        #region IMemberService Members
+        #region MemberService
 
-        public IEnumerable<Member> GetMembers()
+        public IEnumerable<MemberModel> GetMembers()
         {
-            var Members = membersRepository.GetAll();
-            return Members;
+            var members = membersRepository.GetAll();
+            return Mapper.Map<IEnumerable<MemberModel>>(members);
         }
 
-        public Member GetMember(int id)
+        public MemberModel GetMember(int id)
         {
-            var Member = membersRepository.GetById(id);
-            return Member;
+            var member = membersRepository.GetById(id);
+            return Mapper.Map<MemberModel>(member);
         }
 
-        public void CreateMember(Member Member)
+        public MemberModel GetMemberByEmail(string email)
         {
-            membersRepository.Add(Member);
+            var member = membersRepository.GetByEmail(email);
+            return Mapper.Map<MemberModel>(member);
         }
 
-        public void SaveMember()
+        public int CreateMember(MemberModel memberModel)
+        {
+            var member = Mapper.Map<Member>(memberModel);
+            var entity = membersRepository.Add(member);
+            return entity.Id;
+        }
+
+        public void CommitMember()
         {
             unitOfWork.Commit();
         }

@@ -8,21 +8,23 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EndecoDemo2017.Models;
 using EndecoDemo.DAL;
 using EndecoDemo.DAL.DBContext;
 using EndecoDemo.Services.Services;
-using EndecoDemo2017.ViewModels.Member;
 using AutoMapper;
 using Autofac;
 using EndecoDemo.DAL.Infrastructure.Interfaces;
 using System.Configuration;
+using EndecoDemo2017.Models;
+using EndecoDemo.Models.Member;
+using log4net;
 
 namespace EndecoDemo2017.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -173,13 +175,12 @@ namespace EndecoDemo2017.Controllers
                     //save new member to endecodata database
                     try
                     {
-                        var mem = Mapper.Map<Member>(new MemberViewModel() { Email = model.Email });
-                        _memberService.CreateMember(mem);
-                        _memberService.SaveMember();
+                        _memberService.CreateMember(new MemberModel() { Email = model.Email });
+                        _memberService.CommitMember();
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
-                        //log error
+                        log.Error(e);
                     }
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

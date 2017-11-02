@@ -24,6 +24,7 @@ namespace EndecoDemo.DAL
         public Nullable<System.DateTime> DateUploaded { get; set; }
         public string StockType { get; set; }
         public int MemberId { get; set; }
+        public string FileNameUploaded { get; set; }
     
         public virtual Member Member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

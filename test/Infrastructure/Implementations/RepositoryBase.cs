@@ -35,9 +35,11 @@ namespace EndecoDemo.DAL.Infrastructure.Implementations
         }
 
         #region Implementation
-        public virtual void Add(T entity)
+        public virtual T Add(T entity)
         {
             dbSet.Add(entity);
+            DbContext.SaveChanges();
+            return entity;
         }
 
         public virtual void Update(T entity)

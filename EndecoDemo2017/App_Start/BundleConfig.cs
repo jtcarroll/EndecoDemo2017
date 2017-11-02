@@ -14,6 +14,12 @@ namespace EndecoDemo2017
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/resumable").Include(
+                        "~/Scripts/Resumable/resumable.js",
+                        "~/Scripts/App/UploadFile.js",
+                        "~/Scripts/App/FetchStockDetails.js",
+                        "~/Scripts/App/date.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -25,7 +31,14 @@ namespace EndecoDemo2017
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/MaterialIcons.css",
+                      "~/Content/Resumable/resumable.css",
+                      "~/Content/Metricgraphics/metricsgraphics.css",
+                      //"~/Content/Metricgraphics/metricsgraphics-demo.css"
+                      "~/Content/Metricgraphics/highlightjs-default.css"
+                      ));
         }
     }
 }

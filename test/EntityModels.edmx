@@ -29,6 +29,7 @@
           <Property Name="DateUploaded" Type="datetime" />
           <Property Name="StockType" Type="nvarchar" MaxLength="10" />
           <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="FileNameUploaded" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_MemberStockHeader">
           <End Role="Members" Type="Self.Members" Multiplicity="1" />
@@ -112,6 +113,7 @@
           <Property Name="MemberId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Member" Relationship="test.FK_MemberStockHeader" FromRole="StockHeader" ToRole="Member" />
           <NavigationProperty Name="StockDetails" Relationship="test.FK_StockHeaderStockDetail" FromRole="StockHeader" ToRole="StockDetail" />
+          <Property Name="FileNameUploaded" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_MemberStockHeader">
           <End Type="test.Member" Role="Member" Multiplicity="1" />
@@ -164,6 +166,7 @@
           <EntitySetMapping Name="StockHeaders">
             <EntityTypeMapping TypeName="test.StockHeader">
               <MappingFragment StoreEntitySet="StockHeaders">
+                <ScalarProperty Name="FileNameUploaded" ColumnName="FileNameUploaded" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="StockType" ColumnName="StockType" />
                 <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />

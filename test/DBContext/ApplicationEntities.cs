@@ -17,9 +17,15 @@ namespace EndecoDemo.DAL.DBContext
         public DbSet<StockHeader> StockHeaders { get; set; }
         public DbSet<StockDetail> StockDetails { get; set; }
 
-        public virtual void Commit()
+        public virtual int Commit()
         {
-            base.SaveChanges();
+            var tran = base.Database.CurrentTransaction;
+            var tran1 = base.ChangeTracker.Entries();
+            
+            var id = base.SaveChanges();
+            var hasChanges = base.ChangeTracker.HasChanges();
+            var id1 = base.ChangeTracker.GetType();
+            return id;
         }
     }
 }

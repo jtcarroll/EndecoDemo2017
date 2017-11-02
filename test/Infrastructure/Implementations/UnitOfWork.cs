@@ -23,9 +23,9 @@ namespace EndecoDemo.DAL.Infrastructure.Implementations
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
 
-        public void Commit()
+        public int Commit()
         {
-            DbContext.Commit();
+            return DbContext.Commit();
         }
     }
 }

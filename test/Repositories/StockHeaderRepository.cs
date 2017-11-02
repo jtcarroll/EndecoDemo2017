@@ -13,16 +13,28 @@ namespace EndecoDemo.DAL.Repositories
         public StockHeaderRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
-        public IQueryable<StockHeader> GetStockHeadersForMember(int memberId)
+        public IEnumerable<StockHeader> GetStockHeadersForMember(int memberId, int fetchCount)
         {
-            var stockHeaders = this.DbContext.StockHeaders.Where(c => c.MemberId == memberId);
+            this.DbContext.Configuration.LazyLoadingEnabled = false;
+            var stockHeaders = this.DbContext.StockHeaders.Where(c => c.MemberId == memberId)
+                .Take(fetchCount)
+                .OrderByDescending(x => x.Id);
+            return stockHeaders.ToList();
+        }
 
-            return stockHeaders;
+        public StockHeader GetLastStockHeaderForMember(int memberId)
+        {
+            this.DbContext.Configuration.LazyLoadingEnabled = true;
+            var stockHeader = this.DbContext.StockHeaders
+                .Where(h => h.Id == this.DbContext.StockHeaders.Max(x => x.Id))
+                .FirstOrDefault();
+            return stockHeader;
         }
     }
 
     public interface IStockHeaderRepository : IRepository<StockHeader>
     {
-        IQueryable<StockHeader> GetStockHeadersForMember(int memberId);
+        IEnumerable<StockHeader> GetStockHeadersForMember(int memberId, int fetchCount);
+        StockHeader GetLastStockHeaderForMember(int memberId);
     }
 }

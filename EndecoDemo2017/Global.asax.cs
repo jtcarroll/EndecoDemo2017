@@ -1,5 +1,4 @@
 ﻿using EndecoDemo2017.Infrastructure.Autofac;
-using EndecoDemo2017.Infrastructure.Automapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using EndecoDemo.Services.Automapper;
 
 namespace EndecoDemo2017
 {
@@ -22,6 +22,7 @@ namespace EndecoDemo2017
             // Autofac and Automapper configurations
             Bootstrapper.Run();
             AutoMapperConfiguration.Configure();
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

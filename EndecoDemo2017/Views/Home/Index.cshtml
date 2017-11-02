@@ -1,31 +1,120 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    var isLoggedIn = User.Identity.IsAuthenticated;
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
+<br />
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@if (!isLoggedIn)
+{
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h4>Welcome to this Demo site</h4>
+            <br />
+            <p class="text-center">
+                This site demonstrates a file uploaded and saved to a database, and the data returned and displayed in a chart.
+                <br />~John Carroll
+            </p>
+            <br />
+            <p class="text-center">
+                Please register to begin using the website.
+            </p>
+        </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"><p><a href="/Account/Login" class="btn btn-primary btn-lg">Login &raquo;</a></p></div>
+        <div class="col-md-3"><p class="text-right"><a href="/Account/Register" class="btn btn-primary btn-lg">Register &raquo;</a></p></div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    }
+    else
+    {
+        <div class="col-md-12">
+            <div class="lead text-center">
+                Upload a file and view charts
+            </div>
+            @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">
+                        <b>Select file to upload</b>
+                        <a href="#" title="File Info" data-toggle="popover" data-placement="bottom" data-content="The file format must be a coma separated csv, it must have two columns, a date (e.g. 01/11/2017 12:30) and a price.">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Select market price type:
+                            <select>
+                                <option id="exSelectionId" value="ex">&nbsp;ex&nbsp;</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="inverse small" id="browseButton">+ Select File</button>
+                            <button class="danger small" id="uploadFiles">Start Upload</button>
+                        </div>
+                    </div>
+                    <div class="alert-box alert" data-nothingToUpload>Error Nothing To Upload, Please Add Some Files</div>
+                    <div id="dragHere" class="panel drop-zone">Drag &amp; Drop Here</div>
+                    <div id="results" class="panel"></div>Status:
+                    <div class="alert-box secondary"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center"><b>Files uploaded history (last 5)</b></p>
+                    <div class="row">
+                        <div id="uploadsListId"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div id="markers-clickable"></div>
+    }
+
 </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/resumable")
+
+    <script src='https://www.metricsgraphicsjs.org/js/lib/highlight.pack.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js' charset='utf-8'></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/MG.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/utility.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/data_graphic.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/hooks.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/register.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/bootstrap_tooltip_popover.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/scales.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/chart_title.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/y_axis.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/x_axis.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/scales.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/init.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/markers.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/rollover.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/common/window_listeners.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/layout/bootstrap_dropdown.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/layout/button.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/line.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/histogram.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/point.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/bar.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/table.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/charts/missing.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/process.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/smoothers.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/formatters.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/transitions.js'></script>
+    <script src='https://www.metricsgraphicsjs.org/src/js/misc/error.js'></script>
+}

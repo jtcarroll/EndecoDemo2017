@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace EndecoDemo.DAL.Repositories
 {
@@ -19,11 +20,20 @@ namespace EndecoDemo.DAL.Repositories
 
             return stockHeaders;
         }
+
+        public void SaveStockDetails(IEnumerable<StockDetail> stockDetails)
+        {
+            DbContext.StockDetails.AddRange(stockDetails);
+            DbContext.SaveChanges();
+        }
+
     }
 
     public interface IStockDetailRepository : IRepository<StockDetail>
     {
         IQueryable<StockDetail> GetStockDetailsForStockHeader(int stockHeaderId);
+
+        void SaveStockDetails(IEnumerable<StockDetail> stockDetails);
     }
 }
 
