@@ -57,7 +57,6 @@ namespace EndecoDemo2017.Controllers
                 {
                     member = _membersService.GetMemberByEmail(this.User.Identity.Name);
                     var stockHeaders = _stockHeaderService.GetStockHeadersForMember(member.Id, fetchCount);
-                    //var headersVM = Mapper.Map<IEnumerable<StockHeaderViewModel>>(stockHeaders);
 
                     response.Success = true;
                     response.Message = "";
@@ -77,7 +76,6 @@ namespace EndecoDemo2017.Controllers
         [HttpGet]
         public JsonResult GetStockDetails(int headerId = 0)
         {
-            log.Error("Test logger!");
             var response = new BaseDto<StockChartViewModel>();
             if (!User.Identity.IsAuthenticated)
             {
@@ -87,16 +85,37 @@ namespace EndecoDemo2017.Controllers
             }
             else
             {
-                if (headerId == 0)
+                try { 
+                    if (headerId == 0)
+                    {
+                        member = _membersService.GetMemberByEmail(this.User.Identity.Name);
+                        headerId = _stockHeaderService.GetLastStockHeaderForMember(member.Id).Id;
+                    }
+                }
+                catch(Exception e)
                 {
-                    member = _membersService.GetMemberByEmail(this.User.Identity.Name);
-                    headerId = _stockHeaderService.GetLastStockHeaderForMember(member.Id).Id;
+                    log.Error(e);
+                    response.Success = false;
+                    response.Message = "There was an error fetching member or stock header details";
+                    return Json(response, JsonRequestBehavior.AllowGet);
+                }
+
+                IEnumerable<StockDetailViewModel> detailsVM = null;
+                IEnumerable<StockDetailModel> stockDetails = null;
+                try
+                {
+                    stockDetails = _stockDetailService.GetStockDetailsForStockHeader(headerId);
+                    detailsVM = Mapper.Map<IEnumerable<StockDetailViewModel>>(stockDetails);
+                }
+                catch (Exception e)
+                {
+                    log.Error(e);
+                    response.Success = false;
+                    response.Message = "There was an error fetching stock details";
+                    return Json(response, JsonRequestBehavior.AllowGet);
                 }
                 try
                 {
-                    var stockDetails = _stockDetailService.GetStockDetailsForStockHeader(headerId);
-                    var detailsVM = Mapper.Map<IEnumerable<StockDetailViewModel>>(stockDetails);
-
                     StockChartViewModel scVm = new StockChartViewModel();
                     scVm.Stock = detailsVM;
                     scVm.MinPrice = detailsVM.Where(x => x.Value == detailsVM.Min(y => y.Value)).FirstOrDefault();
@@ -122,7 +141,7 @@ namespace EndecoDemo2017.Controllers
                 {
                     log.Error(e);
                     response.Success = false;
-                    response.Message = e.Message;
+                    response.Message = "There was an error building chart data.";
                     return Json(response, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -133,7 +152,20 @@ namespace EndecoDemo2017.Controllers
         public JsonResult UploadFile(object data)
         {
             var response = new BaseDto<string>();
-            if (!User.Identity.IsAuthenticated)
+            bool isUserAuthenticated = false;
+            try
+            {
+                isUserAuthenticated = User.Identity.IsAuthenticated;
+            }
+            catch (Exception e)
+            {
+                log.Error(e);
+                response.Success = false;
+                response.Message = "There was a problem authenticating member";
+                return Json(response, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!isUserAuthenticated)
             {
                 response.Success = false;
                 response.Message = "Please login to site";
@@ -141,15 +173,14 @@ namespace EndecoDemo2017.Controllers
             }
             else
             {
+                List<StockDetailModel> sdList = new List<StockDetailModel>();
                 try
                 {
-                    //TelemetryConfiguration.Active.DisableTelemetry = true;
                     var queryString = Request.Form;
                     if (queryString.Count == 0)
                     {
                         response.Success = false;
                         response.Message = "No data in QueryString";
-                        Response.StatusCode = 403;
                         return Json(response, JsonRequestBehavior.AllowGet);
                     }
                     // Read parameters
@@ -158,7 +189,6 @@ namespace EndecoDemo2017.Controllers
                     var resumableFilename = queryString.Get("resumableFilename");
                     var priceType = queryString.Get("pricetype");
 
-                    List<StockDetailModel> sdList = new List<StockDetailModel>();
                     byte[] fileDataArray = null;
                     using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
                     {
@@ -173,23 +203,6 @@ namespace EndecoDemo2017.Controllers
                                 chunkString = Session["partialRecord"].ToString() + chunkString;
                             }
                         }
-
-                        //if this is the first chunk then get member details 
-                        //and create a stockheader
-                        if (resumableChunkNumber == 1)
-                        {
-                            member = _membersService.GetMemberByEmail(this.User.Identity.Name);
-                            StockHeaderModel skhr = new StockHeaderModel()
-                            {
-                                MemberId = member.Id,
-                                DateUploaded = DateTime.Now,
-                                StockType = (priceType != null ) ? priceType : "ex",
-                                FileNameUploaded = resumableFilename
-                            };
-                            stockHeaderId = _stockHeaderService.CreateStockHeader(skhr);
-                            Session["stockHeaderId"] = stockHeaderId;
-                        }
-
                         var elements = chunkString.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries).ToList();
 
                         //remove first line if contains word "date" or "price"
@@ -199,6 +212,22 @@ namespace EndecoDemo2017.Controllers
                             {
                                 elements.RemoveAt(0);
                             }
+                        }
+
+                        if (resumableChunkNumber == 1)
+                        {
+                            //if this is the first chunk then get member details 
+                            //and create a stockheader
+                            member = _membersService.GetMemberByEmail(this.User.Identity.Name);
+                            StockHeaderModel skhr = new StockHeaderModel()
+                            {
+                                MemberId = member.Id,
+                                DateUploaded = DateTime.Now,
+                                StockType = (priceType != null) ? priceType : "ex",
+                                FileNameUploaded = resumableFilename
+                            };
+                            stockHeaderId = _stockHeaderService.CreateStockHeader(skhr);
+                            Session["stockHeaderId"] = stockHeaderId;
                         }
                         //as the file is uploaded in chunks some lines will be partial
                         //last line of previous chunk needs to added to first line of this chunk
@@ -216,23 +245,31 @@ namespace EndecoDemo2017.Controllers
                             }
                         }
                     }
-
-                    _stockDetailService.CreateStockDetails(sdList);
-                    _stockDetailService.CommitStockDetail();
                 }
                 catch (Exception e)
                 {
                     log.Error(e);
                     response.Success = false;
-                    response.Message = e.Message;
-                    Response.StatusCode = 403;
+                    response.Message = "There was an error reading file data or creating the stock header record";
+                    return Json(response, JsonRequestBehavior.AllowGet);
+                }
+
+                try
+                {
+                    _stockDetailService.CreateStockDetails(sdList);
+                    _stockDetailService.CommitStockDetail();
+                }
+                catch(Exception e)
+                {
+                    log.Error(e);
+                    response.Success = false;
+                    response.Message = "There was an error saving stock details data.";
                     return Json(response, JsonRequestBehavior.AllowGet);
                 }
             }
             
             response.Success = true;
             response.Message = "Data has been saved successfully";
-            Response.StatusCode = 200;
             return Json(response, JsonRequestBehavior.AllowGet);
         } 
 
